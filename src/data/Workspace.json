@@ -1,0 +1,53 @@
+{
+  "workspace": "Workspace Continent",
+  "users": [
+    {
+      "name": "Geralt",
+      "email": "geralt@oslash.com",
+      "group": "Witchers",
+      "avatar": "/images/avatars/Geralt.svg"
+    },
+    {
+      "name": "Vesemir",
+      "email": "vesemir@oslash.com",
+      "group": "Witchers",
+      "avatar": "/images/avatars/Vesemir.svg"
+    },
+    {
+      "name": "Yennefer",
+      "email": "yennefer@oslash.com",
+      "group": "Sorceresses",
+      "avatar": "/images/avatars/Yennefer.svg"
+    },
+    {
+      "name": "Triss",
+      "email": "triss@oslash.com",
+      "group": "Sorceresses",
+      "avatar": "/images/avatars/Triss.svg"
+    },
+    {
+      "name": "Cirilla",
+      "email": "cirilla@oslash.com",
+      "group": "Witchers",
+      "avatar": "/images/avatars/Cirilla.svg"
+    },
+    {
+      "name": "Jaskier",
+      "email": "jaskier@oslash.com",
+      "group": "Common Folks",
+      "avatar": "/images/avatars/Jaskier.svg"
+    },
+    {
+      "name": "Stregobor",
+      "email": "stregobor@oslash.com",
+      "group": "Sorcerers",
+      "avatar": "/images/avatars/Stregobor.svg"
+    }
+  ],
+  "groups": [
+    { "name": "Witchers", "users": ["Geralt", "Vesemir", "Cirilla"] },
+    { "name": "Sorceresses", "users": ["Yennefer", "Triss"] },
+    { "name": "Sorcerers", "users": ["Stregobor"] },
+    { "name": "Folks", "users": ["Jaskier"] }
+  ]
+}
