@@ -28,6 +28,14 @@ const Search: FC = () => {
 
   const [value, setValue] = useState<AccessLevels>(0);
 
+  const handleEsc = (e: KeyboardEvent<HTMLInputElement> | null) => {
+    if (!!e) e.preventDefault();
+
+    setShowSearch(false);
+    setSelectedUsers([]);
+    setSelectedGroups([]);
+  };
+
   const handleValue: Function = (value: AccessLevels) => setValue(value);
 
   const handleSearch: Function = (q: string) => {
@@ -54,12 +62,7 @@ const Search: FC = () => {
   };
 
   const handleNavigation = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Escape") {
-      e.preventDefault();
-      setShowSearch(false);
-      setSelectedUsers([]);
-      setSelectedGroups([]);
-    }
+    if (e.key === "Escape") handleEsc(e);
 
     const navArr = [...selectedUsers, ...selectedGroups];
 
@@ -67,6 +70,8 @@ const Search: FC = () => {
       setHover(0);
       return;
     }
+
+    if (e.key === "Enter") console.log(navArr[hover]);
 
     if (e.key === "ArrowDown" && hover !== navArr.length - 1)
       setHover(hover + 1);
@@ -93,7 +98,7 @@ const Search: FC = () => {
               color="gray.600"
               fontWeight="medium"
               rounded="full"
-              onClick={() => setShowSearch(false)}
+              onClick={() => handleEsc(null)}
             >
               <ArrowLeftIcon size={16} />
             </Button>
