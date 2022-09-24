@@ -17,12 +17,12 @@ const Search: FC = () => {
   const {
     users,
     groups,
-    selectedUsers,
-    selectedGroups,
+    filteredUsers,
+    filteredGroups,
     hover,
     setHover,
-    setSelectedUsers,
-    setSelectedGroups,
+    setFilteredUsers,
+    setFilteredGroups,
     setShowSearch
   } = useShareWidget();
 
@@ -32,8 +32,8 @@ const Search: FC = () => {
     if (!!e) e.preventDefault();
 
     setShowSearch(false);
-    setSelectedUsers([]);
-    setSelectedGroups([]);
+    setFilteredUsers([]);
+    setFilteredGroups([]);
   };
 
   const handleValue: Function = (value: AccessLevels) => setValue(value);
@@ -42,8 +42,8 @@ const Search: FC = () => {
     setHover(0);
 
     if (q.length < 3) {
-      setSelectedUsers([]);
-      setSelectedGroups([]);
+      setFilteredUsers([]);
+      setFilteredGroups([]);
       return;
     } else {
       const query = q.toLowerCase();
@@ -56,15 +56,15 @@ const Search: FC = () => {
 
       const ga = groups.filter(g => g.name.toLowerCase().includes(query));
 
-      setSelectedUsers(ua);
-      setSelectedGroups(ga);
+      setFilteredUsers(ua);
+      setFilteredGroups(ga);
     }
   };
 
   const handleNavigation = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Escape") handleEsc(e);
 
-    const navArr = [...selectedUsers, ...selectedGroups];
+    const navArr = [...filteredUsers, ...filteredGroups];
 
     if (!navArr.length) {
       setHover(0);

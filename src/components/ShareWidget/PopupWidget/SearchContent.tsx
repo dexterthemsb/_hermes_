@@ -4,7 +4,7 @@ import useShareWidget from "../../../hooks/useShareWidget";
 import SelectItem from "./SelectItem";
 
 const SearchContent: FC = () => {
-  const { selectedUsers, selectedGroups } = useShareWidget();
+  const { filteredUsers, filteredGroups } = useShareWidget();
 
   return (
     <>
@@ -12,33 +12,33 @@ const SearchContent: FC = () => {
 
       <Box maxH="64" overflowY="auto">
         <Box m="4">
-          {!selectedUsers.length && !selectedGroups.length && (
+          {!filteredUsers.length && !filteredGroups.length && (
             <Text my="8" textAlign="center" color="gray.400">
               No results to show.
             </Text>
           )}
 
-          {!!selectedUsers?.length && (
+          {!!filteredUsers?.length && (
             <Box>
               <Text mb="2" fontSize="sm" color="gray.500">
                 Select a Person
               </Text>
 
-              {selectedUsers.map((obj, i) => (
+              {filteredUsers.map((obj, i) => (
                 <SelectItem index={i} key={obj.email} obj={obj} type="user" />
               ))}
             </Box>
           )}
 
-          {!!selectedGroups.length && (
-            <Box mt={!!selectedUsers.length ? "4" : "0"}>
+          {!!filteredGroups.length && (
+            <Box mt={!!filteredUsers.length ? "4" : "0"}>
               <Text mb="2" fontSize="sm" color="gray.500">
                 Select a Group
               </Text>
 
-              {selectedGroups.map((obj, i) => (
+              {filteredGroups.map((obj, i) => (
                 <SelectItem
-                  index={selectedUsers.length + i}
+                  index={filteredUsers.length + i}
                   key={obj.name}
                   obj={obj}
                   type="user"

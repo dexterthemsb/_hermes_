@@ -8,13 +8,13 @@ export interface IShareWidgetContext {
   isPublic: boolean;
   webAccess: AccessLevels;
   setWebAccess: Function;
-  selectedUsers: Array<any>;
-  selectedGroups: Array<any>;
+  filteredUsers: Array<any>;
+  filteredGroups: Array<any>;
   setIsPublic: Function;
   hover: number;
   setHover: Function;
-  setSelectedUsers: Function;
-  setSelectedGroups: Function;
+  setFilteredUsers: Function;
+  setFilteredGroups: Function;
   showSearch: boolean;
   setShowSearch: Function;
 }
@@ -26,13 +26,13 @@ const init: IShareWidgetContext = {
   isPublic: false,
   webAccess: 0,
   setWebAccess: () => {},
-  selectedUsers: [],
-  selectedGroups: [],
+  filteredUsers: [],
+  filteredGroups: [],
   setIsPublic: () => {},
   hover: 0,
   setHover: () => {},
-  setSelectedUsers: () => {},
-  setSelectedGroups: () => {},
+  setFilteredUsers: () => {},
+  setFilteredGroups: () => {},
   showSearch: false,
   setShowSearch: () => {}
 };
@@ -47,11 +47,11 @@ const ShareWidgetContextProvider: FC<{ children: ReactNode }> = ({
   const [isPublic, setIsPublic] = useState<boolean>(init.isPublic);
   const [hover, setHover] = useState<number>(init.hover);
   const [webAccess, setWebAccess] = useState<AccessLevels>(init.webAccess);
-  const [selectedUsers, setSelectedUsers] = useState<Array<any>>(
-    init.selectedUsers
+  const [filteredUsers, setFilteredUsers] = useState<Array<any>>(
+    init.filteredUsers
   );
-  const [selectedGroups, setSelectedGroups] = useState<Array<any>>(
-    init.selectedGroups
+  const [filteredGroups, setFilteredGroups] = useState<Array<any>>(
+    init.filteredGroups
   );
   const [showSearch, setShowSearch] = useState<boolean>(init.showSearch);
 
@@ -72,10 +72,10 @@ const ShareWidgetContextProvider: FC<{ children: ReactNode }> = ({
         setHover,
         webAccess,
         setWebAccess,
-        selectedUsers,
-        setSelectedUsers,
-        selectedGroups,
-        setSelectedGroups,
+        filteredUsers,
+        setFilteredUsers,
+        filteredGroups,
+        setFilteredGroups,
         showSearch,
         setShowSearch
       }}

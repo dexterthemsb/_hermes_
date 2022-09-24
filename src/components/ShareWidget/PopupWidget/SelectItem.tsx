@@ -11,9 +11,9 @@ interface SelectItemProps extends BoxProps {
 }
 
 const SelectItem: FC<SelectItemProps> = ({ obj, index, type }) => {
-  const { hover, setHover, selectedUsers, selectedGroups } = useShareWidget();
+  const { hover, setHover, filteredUsers, filteredGroups } = useShareWidget();
 
-  const navArr = [...selectedUsers, ...selectedGroups];
+  const navArr = [...filteredUsers, ...filteredGroups];
   const hoverObj = !!navArr.length ? navArr[hover] : null;
 
   const getColor = () => {
