@@ -16,7 +16,11 @@ const MainContent: FC = () => {
     >
       <Box display="flex" flexDir="column" alignItems="center">
         <Heading>Share Widget</Heading>
-        <ShareWidget users={data.users} groups={data.groups} buttonProps={{ mt: "16" }} />
+        <ShareWidget
+          users={data.users}
+          groups={data.groups}
+          buttonProps={{ mt: "16" }}
+        />
       </Box>
       <Text color="gray.500">Made by Manmohan Singh</Text>
     </Container>

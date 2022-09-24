@@ -2,7 +2,7 @@ import { Button, ButtonProps, Popover, PopoverTrigger } from "@chakra-ui/react";
 import { forwardRef, ReactNode, useRef } from "react";
 import { Share2 as ShareIcon } from "react-feather";
 import ShareWidgetContextProvider from "../../contexts/ShareWidgetContext";
-import Dialog from "./Dialog";
+import PopupWidget from "./PopupWidget";
 
 export interface ShareProps {
   users: Array<any>;
@@ -42,7 +42,7 @@ const ShareWidget = forwardRef<HTMLButtonElement, ShareProps>(
             </Button>
           </PopoverTrigger>
 
-          <Dialog />
+          <PopupWidget users={users} groups={groups} />
         </Popover>
       </ShareWidgetContextProvider>
     );
