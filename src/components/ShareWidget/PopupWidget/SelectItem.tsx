@@ -1,6 +1,8 @@
 import { Box, BoxProps, Text } from "@chakra-ui/react";
 import { FC } from "react";
 import useShareWidget from "../../../hooks/useShareWidget";
+import { AccessLevels } from "../../../types/misc";
+import { handleAddition } from "../../../utils/shareWidgetUtils";
 import ImageAvatar from "./ImageAvatar";
 import LetterAvatar from "./LetterAvatar";
 
@@ -8,9 +10,19 @@ interface SelectItemProps extends BoxProps {
   obj: any;
   index: number;
   type: "user" | "group";
+  selected: { [key: string]: AccessLevels };
+  setSelected: Function;
+  access: AccessLevels;
 }
 
-const SelectItem: FC<SelectItemProps> = ({ obj, index, type }) => {
+const SelectItem: FC<SelectItemProps> = ({
+  obj,
+  index,
+  type,
+  selected,
+  setSelected,
+  access
+}) => {
   const { hover, setHover, filteredUsers, filteredGroups } = useShareWidget();
 
   const navArr = [...filteredUsers, ...filteredGroups];
@@ -33,6 +45,7 @@ const SelectItem: FC<SelectItemProps> = ({ obj, index, type }) => {
       rounded="md"
       bgColor={getColor()}
       key={obj.email}
+      onClick={() => handleAddition(selected, setSelected, obj.email, access)}
       onMouseEnter={() => setHover(index)}
     >
       {!!obj.avatar ? (

@@ -8,9 +8,14 @@ import ShowChips from "./ShowChips";
 interface SearchContentProps {
   selected: { [key: string]: AccessLevels };
   setSelected: Function;
+  access: AccessLevels;
 }
 
-const SearchContent: FC<SearchContentProps> = ({ selected, setSelected }) => {
+const SearchContent: FC<SearchContentProps> = ({
+  selected,
+  setSelected,
+  access
+}) => {
   const { filteredUsers, filteredGroups } = useShareWidget();
 
   return (
@@ -34,7 +39,15 @@ const SearchContent: FC<SearchContentProps> = ({ selected, setSelected }) => {
               </Text>
 
               {filteredUsers.map((obj, i) => (
-                <SelectItem index={i} key={obj.email} obj={obj} type="user" />
+                <SelectItem
+                  selected={selected}
+                  setSelected={setSelected}
+                  access={access}
+                  index={i}
+                  key={obj.email}
+                  obj={obj}
+                  type="user"
+                />
               ))}
             </Box>
           )}
@@ -47,6 +60,9 @@ const SearchContent: FC<SearchContentProps> = ({ selected, setSelected }) => {
 
               {filteredGroups.map((obj, i) => (
                 <SelectItem
+                  selected={selected}
+                  setSelected={setSelected}
+                  access={access}
                   index={filteredUsers.length + i}
                   key={obj.name}
                   obj={obj}

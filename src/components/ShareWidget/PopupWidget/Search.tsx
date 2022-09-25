@@ -154,7 +154,11 @@ const Search: FC = () => {
         </InputRightAddon>
       </InputGroup>
 
-      <SearchContent selected={tempSelected} setSelected={setTempSelected} />
+      <SearchContent
+        selected={tempSelected}
+        setSelected={setTempSelected}
+        access={value}
+      />
     </>
   );
 };
