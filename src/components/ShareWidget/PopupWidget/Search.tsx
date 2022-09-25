@@ -139,6 +139,7 @@ const Search: FC = () => {
             color="gray.600"
             fontWeight="medium"
             size="sm"
+            onClick={() => handleEsc(null)}
           >
             Invite
           </Button>

@@ -9,7 +9,7 @@ import {
 
 interface SelectAccessLevelProps {
   value: AccessLevels;
-  onChange: (value: AccessLevels) => {};
+  onChange: (value: AccessLevels) => void | {};
 }
 
 const SelectAccessLevel: FC<SelectAccessLevelProps> = ({ value, onChange }) => {

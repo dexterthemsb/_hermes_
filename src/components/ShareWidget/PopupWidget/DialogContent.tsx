@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import { FC } from "react";
 import useShareWidget from "../../../hooks/useShareWidget";
+import SelectionList from "./SelectionList";
 import WebAccess from "./WebAccess";
 
 const DialogContent: FC = () => {
@@ -34,6 +35,8 @@ const DialogContent: FC = () => {
             <WebAccess />
           </Box>
         )}
+
+        <SelectionList />
       </Box>
 
       <Divider />

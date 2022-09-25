@@ -30,5 +30,7 @@ export const handlePermissionUpdate = (
 
 export const getDetailsFromEmail = (email: String, arr: Array<any>) => {
   const res = arr.filter(obj => obj.email === email);
-  return !!res.length ? res[0] : null;
+  return !!res.length
+    ? { ...res[0], type: res[0].users ? "groups" : "users" }
+    : null;
 };
