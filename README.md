@@ -30,6 +30,8 @@ Note: Callback to call an API, do some computations on the selected groups, user
 
 [Check here](https://chakra-ui.com/docs/components/button/usage) for the docs.
 
+---
+
 **children** Button content
 
 Default: Share
