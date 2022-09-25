@@ -33,8 +33,11 @@ const Search: FC = () => {
   } = useShareWidget();
 
   const [value, setValue] = useState<AccessLevels>(0);
+  const [tempSelected, setTempSelected] = useState<{
+    [key: string]: AccessLevels;
+  }>({});
 
-  const keys = Object.keys(selected);
+  const keys = Object.keys(tempSelected);
 
   const handleEsc = (e: KeyboardEvent<HTMLInputElement> | null) => {
     if (!!e) e.preventDefault();
@@ -46,7 +49,7 @@ const Search: FC = () => {
 
   const handleValue: Function = (value: AccessLevels) => {
     if (!!keys.length) {
-      handlePermissionUpdate(selected, setSelected, keys, value);
+      handlePermissionUpdate(tempSelected, setTempSelected, keys, value);
     }
 
     setValue(value);
@@ -86,12 +89,22 @@ const Search: FC = () => {
     }
 
     if (e.key === "Enter") {
-      handleAddition(selected, setSelected, navArr[hover].email, value);
+      handleAddition(tempSelected, setTempSelected, navArr[hover].email, value);
     }
 
     if (e.key === "ArrowDown" && hover !== navArr.length - 1)
       setHover(hover + 1);
     if (e.key === "ArrowUp" && hover !== 0) setHover(hover - 1);
+  };
+
+  const handleSubmit = () => {
+    console.log(selected);
+    console.log(tempSelected);
+    console.log({ ...selected, ...tempSelected });
+
+    setSelected({ ...selected, ...tempSelected });
+
+    handleEsc(null);
   };
 
   return (
@@ -139,14 +152,14 @@ const Search: FC = () => {
             color="gray.600"
             fontWeight="medium"
             size="sm"
-            onClick={() => handleEsc(null)}
+            onClick={() => handleSubmit()}
           >
             Invite
           </Button>
         </InputRightAddon>
       </InputGroup>
 
-      <SearchContent />
+      <SearchContent selected={tempSelected} setSelected={setTempSelected} />
     </>
   );
 };

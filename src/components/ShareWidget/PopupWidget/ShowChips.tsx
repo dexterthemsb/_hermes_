@@ -1,13 +1,20 @@
 import { Box, Divider, Text } from "@chakra-ui/react";
+import { FC } from "react";
 import { X } from "react-feather";
 import useShareWidget from "../../../hooks/useShareWidget";
+import { AccessLevels } from "../../../types/misc";
 import {
   getDetailsFromEmail,
   handleDeletion
 } from "../../../utils/shareWidgetUtils";
 
-const ShowChips = () => {
-  const { users, groups, selected, setSelected } = useShareWidget();
+interface ShowChipsProps {
+  selected: { [key: string]: AccessLevels };
+  setSelected: Function;
+}
+
+const ShowChips: FC<ShowChipsProps> = ({ selected, setSelected }) => {
+  const { users, groups } = useShareWidget();
 
   const keys = Object.keys(selected);
 
@@ -16,6 +23,7 @@ const ShowChips = () => {
       <Box p="4" pb="2" w="full">
         {keys.map(key => (
           <Box
+            key={key}
             px="1"
             py="0.5"
             mr="2"

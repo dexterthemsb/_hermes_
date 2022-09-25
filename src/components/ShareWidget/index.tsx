@@ -8,7 +8,6 @@ export interface ShareProps {
   users: Array<any>;
   groups: Array<any>;
   onSubmit?: Function;
-  onSearch?: Function;
   buttonProps?: ButtonProps;
   children?: ReactNode;
 }
@@ -19,7 +18,6 @@ const ShareWidget = forwardRef<HTMLButtonElement, ShareProps>(
       users,
       groups,
       onSubmit = () => {},
-      onSearch = () => {},
       buttonProps = {},
       children = "Share"
     },
