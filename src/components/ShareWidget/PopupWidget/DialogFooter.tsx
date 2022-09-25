@@ -2,9 +2,32 @@ import { Box, Button, Divider, Text } from "@chakra-ui/react";
 import { FC } from "react";
 import { Link as LinkIcon, HelpCircle as HelpCircleIcon } from "react-feather";
 import useShareWidget from "../../../hooks/useShareWidget";
+import { IResponse } from "../../../types/misc";
+import { getDetailsFromEmail } from "../../../utils/shareWidgetUtils";
 
-const DialogFooter: FC = () => {
-  const { showSearch } = useShareWidget();
+interface DialogFooterProps {
+  onSubmit?: (res: IResponse) => void;
+}
+
+const DialogFooter: FC<DialogFooterProps> = ({ onSubmit }) => {
+  const { users, groups, isPublic, webAccess, showSearch, selected } =
+    useShareWidget();
+
+  const handleSubmit = () => {
+    if (!!onSubmit) {
+      let arr: Array<any> = [];
+      const publicAccess = !!isPublic ? webAccess : null;
+
+      const keys = Object.keys(selected);
+
+      keys.forEach(key => {
+        const obj = getDetailsFromEmail(key, [...users, ...groups]);
+        arr.push({ ...obj, access: selected[key] });
+      });
+
+      onSubmit({ publicAccess, selected: arr });
+    }
+  };
 
   return (
     <>
@@ -41,6 +64,7 @@ const DialogFooter: FC = () => {
             variant="ghost"
             size="sm"
             fontWeight="medium"
+            onClick={() => handleSubmit()}
           >
             Copy Link
           </Button>

@@ -98,12 +98,7 @@ const Search: FC = () => {
   };
 
   const handleSubmit = () => {
-    console.log(selected);
-    console.log(tempSelected);
-    console.log({ ...selected, ...tempSelected });
-
     setSelected({ ...selected, ...tempSelected });
-
     handleEsc(null);
   };
 
