@@ -45,9 +45,21 @@
     }
   ],
   "groups": [
-    { "name": "Witchers", "users": ["Geralt", "Vesemir", "Cirilla"] },
-    { "name": "Sorceresses", "users": ["Yennefer", "Triss"] },
-    { "name": "Sorcerers", "users": ["Stregobor"] },
-    { "name": "Folks", "users": ["Jaskier"] }
+    {
+      "name": "Witchers",
+      "email": "witchers@oslash.com",
+      "users": ["Geralt", "Vesemir", "Cirilla"]
+    },
+    {
+      "name": "Sorceresses",
+      "email": "sorceresses@oslash.com",
+      "users": ["Yennefer", "Triss"]
+    },
+    {
+      "name": "Sorcerers",
+      "email": "sorcerers@oslash.com",
+      "users": ["Stregobor"]
+    },
+    { "name": "Folks", "email": "folks@oslash.com", "users": ["Jaskier"] }
   ]
 }

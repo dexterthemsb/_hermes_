@@ -2,6 +2,7 @@ import { Box, Divider, Text } from "@chakra-ui/react";
 import { FC } from "react";
 import useShareWidget from "../../../hooks/useShareWidget";
 import SelectItem from "./SelectItem";
+import ShowChips from "./ShowChips";
 
 const SearchContent: FC = () => {
   const { filteredUsers, filteredGroups } = useShareWidget();
@@ -9,6 +10,8 @@ const SearchContent: FC = () => {
   return (
     <>
       <Divider />
+
+      <ShowChips />
 
       <Box maxH="64" overflowY="auto">
         <Box m="4">

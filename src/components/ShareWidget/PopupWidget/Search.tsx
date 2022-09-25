@@ -10,6 +10,10 @@ import { FC, KeyboardEvent, useState } from "react";
 import { ArrowLeft as ArrowLeftIcon } from "react-feather";
 import useShareWidget from "../../../hooks/useShareWidget";
 import { AccessLevels } from "../../../types/misc";
+import {
+  handleAddition,
+  handlePermissionUpdate
+} from "../../../utils/shareWidgetUtils";
 import SelectAccessLevel from "../SelectAccessLevel";
 import SearchContent from "./SearchContent";
 
@@ -23,10 +27,14 @@ const Search: FC = () => {
     setHover,
     setFilteredUsers,
     setFilteredGroups,
-    setShowSearch
+    setShowSearch,
+    selected,
+    setSelected
   } = useShareWidget();
 
   const [value, setValue] = useState<AccessLevels>(0);
+
+  const keys = Object.keys(selected);
 
   const handleEsc = (e: KeyboardEvent<HTMLInputElement> | null) => {
     if (!!e) e.preventDefault();
@@ -36,7 +44,13 @@ const Search: FC = () => {
     setFilteredGroups([]);
   };
 
-  const handleValue: Function = (value: AccessLevels) => setValue(value);
+  const handleValue: Function = (value: AccessLevels) => {
+    if (!!keys.length) {
+      handlePermissionUpdate(selected, setSelected, keys, value);
+    }
+
+    setValue(value);
+  };
 
   const handleSearch: Function = (q: string) => {
     setHover(0);
@@ -71,7 +85,9 @@ const Search: FC = () => {
       return;
     }
 
-    if (e.key === "Enter") console.log(navArr[hover]);
+    if (e.key === "Enter") {
+      handleAddition(selected, setSelected, navArr[hover].email, value);
+    }
 
     if (e.key === "ArrowDown" && hover !== navArr.length - 1)
       setHover(hover + 1);

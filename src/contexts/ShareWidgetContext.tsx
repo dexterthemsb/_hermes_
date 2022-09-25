@@ -17,6 +17,8 @@ export interface IShareWidgetContext {
   setFilteredGroups: Function;
   showSearch: boolean;
   setShowSearch: Function;
+  selected: {[key: string]: AccessLevels};
+  setSelected: Function;
 }
 
 const init: IShareWidgetContext = {
@@ -34,26 +36,23 @@ const init: IShareWidgetContext = {
   setFilteredUsers: () => {},
   setFilteredGroups: () => {},
   showSearch: false,
-  setShowSearch: () => {}
+  setShowSearch: () => {},
+  selected: {},
+  setSelected: () => {}
 };
 
 export const ShareWidgetContext = createContext<IShareWidgetContext>(init);
 
-const ShareWidgetContextProvider: FC<{ children: ReactNode }> = ({
-  children
-}) => {
+const ShareWidgetContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [users, setUsers] = useState<Array<any>>(init.users);
   const [groups, setGroups] = useState<Array<any>>(init.groups);
   const [isPublic, setIsPublic] = useState<boolean>(init.isPublic);
   const [hover, setHover] = useState<number>(init.hover);
   const [webAccess, setWebAccess] = useState<AccessLevels>(init.webAccess);
-  const [filteredUsers, setFilteredUsers] = useState<Array<any>>(
-    init.filteredUsers
-  );
-  const [filteredGroups, setFilteredGroups] = useState<Array<any>>(
-    init.filteredGroups
-  );
+  const [filteredUsers, setFilteredUsers] = useState<Array<any>>(init.filteredUsers);
+  const [filteredGroups, setFilteredGroups] = useState<Array<any>>(init.filteredGroups);
   const [showSearch, setShowSearch] = useState<boolean>(init.showSearch);
+  const [selected, setSelected] = useState<{[key: string]: AccessLevels}>(init.selected);
 
   const handleInitData = (users: Array<any>, groups: Array<any>) => {
     setUsers(users);
@@ -77,7 +76,9 @@ const ShareWidgetContextProvider: FC<{ children: ReactNode }> = ({
         filteredGroups,
         setFilteredGroups,
         showSearch,
-        setShowSearch
+        setShowSearch,
+        selected,
+        setSelected
       }}
     >
       {children}
